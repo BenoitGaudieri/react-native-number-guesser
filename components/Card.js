@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 const Card = (props) => {
     return (
+        // get the style from the props
         <View style={{ ...styles.card, ...props.style }}>{props.children}</View>
     );
 };
