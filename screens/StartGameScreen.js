@@ -11,24 +11,38 @@ import {
 import BodyText from "../components/BodyText";
 import Card from "../components/Card";
 import Input from "../components/Input";
+import MainButton from "../components/MainButton";
 import NumberContainer from "../components/NumberContainer";
 import TitleText from "../components/TitleText";
 import Colors from "../constants/colors";
 
 const StartGameScreen = (props) => {
+    /**
+     * States
+     */
     const [enteredValue, setEnteredValue] = useState("");
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
 
+    /**
+     * nulls non-numbers
+     * @param {int} inputText
+     */
     const numberInputHandler = (inputText) => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ""));
     };
 
+    /**
+     * reset logic
+     */
     const resetInputHandler = () => {
         setEnteredValue("");
         setConfirmed(false);
     };
 
+    /**
+     * at confirm button press check if everything is ok and set the states
+     */
     const confirmInputHandler = () => {
         const chosenNumber = parseInt(enteredValue);
         if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
@@ -53,20 +67,25 @@ const StartGameScreen = (props) => {
 
     let confirmedOutput;
 
+    /**
+     * show the selected number once confirmed
+     */
     if (confirmed) {
         confirmedOutput = (
             <Card style={styles.summaryContainer}>
                 <Text>You selected</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button
-                    title="Start Game!"
-                    onPress={() => props.onStartGame(selectedNumber)}
-                />
+                <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+                    Start Game!
+                </MainButton>
             </Card>
         );
     }
 
     return (
+        /**
+         * on press outside of the keyboard it closes the keyboard
+         */
         <TouchableWithoutFeedback
             onPress={() => {
                 Keyboard.dismiss();
