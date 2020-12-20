@@ -12,11 +12,11 @@ const GameOver = (props) => {
             <View style={styles.imageContainer}>
                 <Image
                     // fadeDuration={1000}
-                    // source={require("../assets/success.png")}
-                    source={{
-                        uri:
-                            "https://images.unsplash.com/photo-1519582149095-fe7d19b2a3d2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2152&q=80",
-                    }}
+                    source={require("../assets/success.png")}
+                    // source={{
+                    //     uri:
+                    //         "https://images.unsplash.com/photo-1519582149095-fe7d19b2a3d2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2152&q=80",
+                    // }}
                     style={styles.image}
                     // resizeMode={"contain"}
                 />
