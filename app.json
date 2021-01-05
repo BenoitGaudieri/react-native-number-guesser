@@ -3,7 +3,7 @@
     "name": "rn-guess-num",
     "slug": "rn-guess-num",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
