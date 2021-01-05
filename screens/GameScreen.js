@@ -6,14 +6,18 @@ import {
     StyleSheet,
     Text,
     View,
+    Dimensions,
 } from "react-native";
+
 import Card from "../components/Card";
 import MainButton from "../components/MainButton";
 import NumberContainer from "../components/NumberContainer";
+import BodyText from "../components/BodyText";
+
 import DefaultStyles from "../constants/default-styles";
+
 // Icons from Ionicons
 import { Ionicons } from "@expo/vector-icons";
-import BodyText from "../components/BodyText";
 
 /**
  * generates random number with a min and max val excluding val
@@ -88,6 +92,12 @@ const GameScreen = (props) => {
         ]);
     };
 
+    let listContainerStyle = styles.listContainer;
+
+    if (Dimensions.get("window").width < 350) {
+        listContainerStyle = styles.listContainerBig;
+    }
+
     return (
         <View style={styles.screen}>
             <Text style={DefaultStyles.bodyText}>Opponent's Guess</Text>
@@ -101,6 +111,8 @@ const GameScreen = (props) => {
                 </MainButton>
             </Card>
 
+            {/* Another possibility to use mediaQueries */}
+            {/* <View style={listContainerStyle}> */}
             <View style={styles.listContainer}>
                 {/* <ScrollView contentContainerStyle={styles.list}>
                     {pastGuesses.map((guess, index) =>
@@ -126,18 +138,26 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: "center",
     },
+
     buttonContainer: {
         flexDirection: "row",
         justifyContent: "space-around",
-        marginTop: 20,
         width: 300,
         maxWidth: "80%",
+        // responsive mediaQuery:
+        marginTop: Dimensions.get("window").height > 600 ? 20 : 10,
     },
 
     listContainer: {
         // flex 1 is needed on android otherwise scrollable won't work
         flex: 1,
-        width: "60%",
+        width: Dimensions.get("window").width > 350 ? "60%" : "80%",
+    },
+
+    // another way to do the check instead of using the terniary in the stylesheet
+    listContainerBig: {
+        flex: 1,
+        width: "80%",
     },
 
     list: {
