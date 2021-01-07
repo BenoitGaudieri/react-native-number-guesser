@@ -1,14 +1,28 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    TouchableNativeFeedback,
+    Platform,
+} from "react-native";
 import colors from "../constants/colors";
 
 const MainButton = (props) => {
+    // capital character so JSX can use it as a component
+    let ButtonComponent = TouchableOpacity;
+
+    if (Platform.OS === "android" && Platform.Version >= 21) {
+        ButtonComponent = TouchableNativeFeedback;
+    }
+
     return (
-        <TouchableOpacity activeOpacity={0.6} onPress={props.onPress}>
+        <ButtonComponent activeOpacity={0.6} onPress={props.onPress}>
             <View style={styles.button}>
                 <Text style={styles.buttonText}>{props.children}</Text>
             </View>
-        </TouchableOpacity>
+        </ButtonComponent>
     );
 };
 
